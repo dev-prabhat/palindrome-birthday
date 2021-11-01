@@ -145,7 +145,7 @@ function clickHandler() {
             var [counter, nextDate] = getNextPalindromeDate(date)
             var { day, month, year } = nextDate;
             var nextPalindromeDate = `${day}-${month}-${year}`
-            resultOutput.innerText = `Next Palindrome date is ${nextPalindromeDate} which is after  ${counter} days`
+            resultOutput.innerText = `Next Palindrome date is ${nextPalindromeDate} which is after ${counter} days`
         }
 
     }

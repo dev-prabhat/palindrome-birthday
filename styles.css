@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');
+
+:root{
+    --bg-color:#C4B5FD;
+    --text-color:#5B21B6;
+}
+
+html{
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+body{
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: large;
+}
+
+#input-div{
+    margin: 1rem;
+    padding: 1rem;
+    font-size: larger;
+}
+
+#input-div #bday-input{
+    margin: 1rem;
+    padding: 0.3rem;
+    font-size: large;
+    border-radius: 0.5rem;
+    border-color: var(--text-color);
+}
+
+#check-button{
+    margin: 1rem;
+    padding: 0.5rem;
+    font-size: larger;
+    border-radius: 0.5rem;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border-color: var(--text-color);
+    font-family: 'Playfair Display', serif;
+}
+
+#output-result{
+    margin-top: 1rem;
+    font-size: larger;
+    font-family: 'Playfair Display', serif;
+    color: var(--text-color);
+}
+
+.fa{
+    padding: 20px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    border-radius: 50%;
+}
+
+.fa:hover{
+    opacity: 0.7;
+}
+
+footer{
+    margin-top: 7rem;
+}
