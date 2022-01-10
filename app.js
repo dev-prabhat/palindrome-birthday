@@ -1,21 +1,16 @@
 //1- Check the input date is palindrome or not
 
-function reverseStr(Str) {
-    var charList = Str.split("")
-    var reverseList = charList.reverse()
-    reverseList = reverseList.join('')
-    return reverseList
-}
+const reverseStr = Str => Str.split("").reverse().join('')
 
 
-function isPalindrome(Str) {
-    var reverse = reverseStr(Str)
+const isPalindrome = Str => {
+    let reverse = reverseStr(Str)
     return Str === reverse
 }
 
 
-function dateToString(date) {
-    var dateInStr = { day: "", month: "", year: "" }
+const dateToString = date => {
+    const dateInStr = { day: "", month: "", year: "" }
 
     date.day < 10 ? dateInStr.day = "0" + date.day : dateInStr.day = date.day.toString()
 
@@ -26,26 +21,26 @@ function dateToString(date) {
 }
 
 
-function dateInAllFormat(date) {
-    var dateStr = dateToString(date)
+const dateInAllFormat = date => {
+    const dateStr = dateToString(date)
 
-    var ddmmyyyy = dateStr.day + dateStr.month + dateStr.year;
-    var mmddyyyy = dateStr.month + dateStr.day + dateStr.year;
-    var yyyymmdd = dateStr.year + dateStr.month + dateStr.day;
-    var ddmmyy = dateStr.day + dateStr.month + dateStr.year.slice(-2);
-    var mmddyy = dateStr.month + dateStr.day + dateStr.year.slice(-2);
-    var yyddmm = dateStr.year.slice(-2) + dateStr.day + dateStr.month;
+    const ddmmyyyy = dateStr.day + dateStr.month + dateStr.year;
+    const mmddyyyy = dateStr.month + dateStr.day + dateStr.year;
+    const yyyymmdd = dateStr.year + dateStr.month + dateStr.day;
+    const ddmmyy = dateStr.day + dateStr.month + dateStr.year.slice(-2);
+    const mmddyy = dateStr.month + dateStr.day + dateStr.year.slice(-2);
+    const yyddmm = dateStr.year.slice(-2) + dateStr.day + dateStr.month;
 
     return [ddmmyyyy, mmddyyyy, yyyymmdd, ddmmyy, mmddyy, yyddmm];
 }
 
 
-function checkPalindromeForAllDateFormat(date) {
-    var listOfPalindromes = dateInAllFormat(date)
+const checkPalindromeForAllDateFormat = date => {
+    const listOfPalindromes = dateInAllFormat(date)
 
-    var flag = false;
+    let flag = false;
 
-    for (var i = 0; i < listOfPalindromes.length; i++) {
+    for (let i = 0; i < listOfPalindromes.length; i++) {
         if (isPalindrome(listOfPalindromes[i])) {
             flag = true
             break;
@@ -56,7 +51,7 @@ function checkPalindromeForAllDateFormat(date) {
 
 //2- Now if input date is not palindrome then calculate next palindrome date and also calculate how many days it arrive 
 
-function isLeapYear(year) {
+const isLeapYear = year => {
     if (year % 400 === 0)
         return true
 
@@ -68,12 +63,12 @@ function isLeapYear(year) {
     else false
 }
 
-function getNextDate(date) {
-    var day = date.day + 1;
-    var month = date.month;
-    var year = date.year;
+const getNextDate = date => {
+    let day = date.day + 1;
+    let month = date.month;
+    let year = date.year;
 
-    var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
     if (month === 2) {
         if (isLeapYear(year)) {
@@ -104,14 +99,14 @@ function getNextDate(date) {
     return { day, month, year }
 }
 
-function getNextPalindromeDate(date) {
+const getNextPalindromeDate = date => {
 
-    var nextDate = getNextDate(date);
-    var counter = 0;
+    let nextDate = getNextDate(date);
+    let counter = 0;
 
     while (1) {
         counter++;
-        var isPalindrome = checkPalindromeForAllDateFormat(nextDate)
+        let isPalindrome = checkPalindromeForAllDateFormat(nextDate)
         if (isPalindrome) break;
 
         nextDate = getNextDate(nextDate)
@@ -122,29 +117,29 @@ function getNextPalindromeDate(date) {
 //3- Take input date from UI and calculate the palindrome
 
 
-var bdayInput = document.querySelector("#bday-input")
-var checkButton = document.querySelector("#check-button")
-var resultOutput = document.querySelector('#output-result')
+const bdayInput = document.querySelector("#bday-input")
+const checkButton = document.querySelector("#check-button")
+const resultOutput = document.querySelector('#output-result')
 
-function clickHandler() {
-    var bdayStr = bdayInput.value
+const clickHandler = () => {
+    let bdayStr = bdayInput.value
     if (bdayStr !== " ") {
-        var listOfDate = bdayStr.split("-")
-        var date = {
+        const listOfDate = bdayStr.split("-")
+        const date = {
             day: Number(listOfDate[2]),
             month: Number(listOfDate[1]),
             year: Number(listOfDate[0])
         }
 
 
-        var IsPalindorme = checkPalindromeForAllDateFormat(date)
+        let IsPalindorme = checkPalindromeForAllDateFormat(date)
 
         if (IsPalindorme) {
             resultOutput.innerText = "Yay!! Your Birthday is Palindrome"
         } else {
-            var [counter, nextDate] = getNextPalindromeDate(date)
-            var { day, month, year } = nextDate;
-            var nextPalindromeDate = `${day}-${month}-${year}`
+            const [counter, nextDate] = getNextPalindromeDate(date)
+            const { day, month, year } = nextDate;
+            const nextPalindromeDate = `${day}-${month}-${year}`
             resultOutput.innerText = `Next Palindrome date is ${nextPalindromeDate} which is after ${counter} days`
         }
 
